@@ -1,9 +1,8 @@
 import { NativeModules } from 'react-native';
-
-type SuperddaIupayType = {
-  multiply(a: number, b: number): Promise<number>;
-};
+import type { SuperddaIupayType } from './types';
+import { Card } from './components';
 
 const { SuperddaIupay } = NativeModules;
 
+export { Card };
 export default SuperddaIupay as SuperddaIupayType;
