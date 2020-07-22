@@ -1,21 +1,41 @@
 # react-native-superdda-iupay
 
-SuperDDA Iupay package and SDK for React Native
+SuperDDA IuPay package and SDK for React Native
 
 ## Installation
 
 ```sh
+yarn add react-native-superdda-iupay
+
+or
+
 npm install react-native-superdda-iupay
 ```
 
 ## Usage
 
-```js
-import SuperddaIupay from "react-native-superdda-iupay";
+```jsx
+import { Card } from "react-native-superdda-iupay";
 
 // ...
 
-const result = await SuperddaIupay.multiply(3, 7);
+      <Card
+        type="netflix"
+        dueDate="19 JUL"
+        isDue
+        cnpj="99.999.0001/99"
+        text="This is a sample text"
+        value={49.9}
+      />
+
+      <Card
+        type="lightBill"
+        lightBillFlagStatus="yellow"
+        dueDate="Friday, 25 JUN"
+        text="Yellow Flag"
+        value={90.12}
+        isPaid
+      />
 ```
 
 ## Contributing
