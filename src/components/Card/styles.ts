@@ -43,6 +43,19 @@ export const CardFooter = styled(CardHeader)`
   margin-top: 9px;
 `;
 
+export const CardTitleContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const CardTitle = styled.Text`
+  font-family: 'NunitoSans-SemiBold';
+  font-size: 14px;
+  color: #727272;
+  margin-left: 11px;
+`;
+
 export const Logo = styled.Image``;
 
 export const DueDateText = styled.Text<CustomProps>`

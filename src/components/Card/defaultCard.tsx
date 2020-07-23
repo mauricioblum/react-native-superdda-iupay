@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import {
   Container,
   Bar,
@@ -6,11 +6,12 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  CardTitleContainer,
+  CardTitle,
   Logo,
   DueDateText,
-  BetweenRow,
+  CardText,
   CnpjText,
-  PaidText,
   MailButton,
   MailIcon,
   CardValue,
@@ -19,63 +20,45 @@ import {
 } from './styles';
 import NumberFormat from 'react-number-format';
 
-import lightbulb from '../../../assets/images/lightbulb.png';
 import mailIcon from '../../../assets/images/mail.png';
 
 import type { CardProps } from '.';
-import styled from 'styled-components/native';
 
 const logoStyle = {
-  width: 40,
-  height: 50,
+  width: 90,
+  height: 30,
 };
 
-const FlagText = styled.Text<{ color: string }>`
-  font-family: 'NunitoSans-Bold';
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 16px;
-  text-align: left;
-  color: ${(props) => props.color};
-`;
-
-export const LightBillCard: React.FC<CardProps> = ({
+export const DefaultCard: React.FC<CardProps> = ({
   children,
   value,
   dueDate,
   cnpj,
+  cardTitle,
   text,
-  barColor = '#8aa626',
+  textColor,
+  barColor,
   isDue,
   containerStyle,
-  lightBillFlagStatus,
-  isPaid,
   onMailButtonPress,
+  logo,
 }) => {
-  const getFlagColor = useCallback((): string => {
-    if (lightBillFlagStatus === 'green') {
-      return '#8aa626';
-    } else if (lightBillFlagStatus === 'yellow') {
-      return '#ebbf10';
-    } else {
-      return '#e30613';
-    }
-  }, [lightBillFlagStatus]);
-
   return (
     <Container style={containerStyle}>
       <Bar color={barColor} />
       <Content>
         <CardHeader>
-          <Logo style={logoStyle} source={lightbulb} resizeMode="contain" />
+          <CardTitleContainer>
+            {logo && (
+              <Logo style={logoStyle} source={logo} resizeMode="contain" />
+            )}
+            <CardTitle>{cardTitle}</CardTitle>
+          </CardTitleContainer>
           <DueDateText isDue={isDue}>{dueDate}</DueDateText>
         </CardHeader>
         <CardBody>
-          <BetweenRow>
-            {cnpj && <CnpjText>CNPJ: {cnpj}</CnpjText>}
-            {isPaid === true && <PaidText>PAGO</PaidText>}
-          </BetweenRow>
-          <FlagText color={getFlagColor()}>{text}</FlagText>
+          {cnpj && <CnpjText>CNPJ: {cnpj}</CnpjText>}
+          <CardText style={{ color: textColor }}>{text}</CardText>
           {children}
         </CardBody>
         <CardFooter>

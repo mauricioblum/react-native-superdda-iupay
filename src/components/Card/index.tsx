@@ -1,17 +1,20 @@
 import React from 'react';
-import { StyleProp, ViewStyle, Text, View } from 'react-native';
+import type { StyleProp, ViewStyle, ImageSourcePropType } from 'react-native';
 import { NetflixCard } from './netflixCard';
 import { LightBillCard } from './lightBillCard';
+import { DefaultCard } from './defaultCard';
 
 export type CardType = 'netflix' | 'nubank' | 'lightBill' | 'default';
 
 export interface CardProps {
   type?: CardType;
-  logo?: string;
+  logo?: ImageSourcePropType;
   value?: number;
   dueDate?: string;
   cnpj?: string;
+  cardTitle?: string;
   text?: string | JSX.Element;
+  textColor?: string;
   barColor?: string;
   isDue?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
@@ -27,16 +30,8 @@ export const Card: React.FC<CardProps> = (props) => {
     case 'lightBill':
       return <LightBillCard {...props} />;
     case 'default':
-      return (
-        <View>
-          <Text>Default</Text>
-        </View>
-      );
+      return <DefaultCard {...props} />;
     default:
-      return (
-        <View>
-          <Text>Default</Text>
-        </View>
-      );
+      return <DefaultCard {...props} />;
   }
 };
