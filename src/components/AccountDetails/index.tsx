@@ -38,7 +38,7 @@ import {
   UserCheck,
   UserX,
 } from '../Icons';
-import AccountDetailsModal from '../AccountDetailsModal';
+import { AccountDetailsModal } from '../AccountDetailsModal';
 import { formatStringDate } from '../utils/formatDate';
 
 export interface PaymentHistoryItem {
@@ -227,5 +227,3 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({
     </WrapperView>
   );
 };
-
-export default AccountDetails;

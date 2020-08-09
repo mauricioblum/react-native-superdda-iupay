@@ -99,5 +99,3 @@ export const FilterSearch: React.FC<FilterSearchProps> = ({
     </Container>
   );
 };
-
-export default FilterSearch;

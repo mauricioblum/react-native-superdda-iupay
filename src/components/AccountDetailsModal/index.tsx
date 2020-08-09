@@ -178,7 +178,9 @@ const renderModal = (props: AccountDetailsModalProps): JSX.Element => {
   );
 };
 
-const AccountDetailsModal: React.FC<AccountDetailsModalProps> = (props) => {
+export const AccountDetailsModal: React.FC<AccountDetailsModalProps> = (
+  props,
+) => {
   const { renderMobile, isOpen, title } = props;
 
   return renderMobile ? (
@@ -207,5 +209,3 @@ const AccountDetailsModal: React.FC<AccountDetailsModalProps> = (props) => {
     renderModal(props)
   );
 };
-
-export default AccountDetailsModal;
