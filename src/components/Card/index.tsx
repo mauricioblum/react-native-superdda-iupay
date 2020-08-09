@@ -1,5 +1,5 @@
 import React from 'react';
-import type { StyleProp, ViewStyle, ImageSourcePropType } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 import { NetflixCard } from './netflixCard';
 import { LightBillCard } from './lightBillCard';
 import { DefaultCard } from './defaultCard';
@@ -8,19 +8,23 @@ export type CardType = 'netflix' | 'nubank' | 'lightBill' | 'default';
 
 export interface CardProps {
   type?: CardType;
-  logo?: ImageSourcePropType;
+  logo?: string | null;
   value?: number;
-  dueDate?: string;
+  dueDate?: Date;
   cnpj?: string;
   cardTitle?: string;
   text?: string | JSX.Element;
   textColor?: string;
   barColor?: string;
   isDue?: boolean;
+  isDueText?: string;
   containerStyle?: StyleProp<ViewStyle>;
   isPaid?: boolean;
-  onMailButtonPress?(): void;
+  isFromMail?: boolean;
+  isUserAdded?: boolean;
   lightBillFlagStatus?: 'green' | 'yellow' | 'red';
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 export const Card: React.FC<CardProps> = (props) => {
