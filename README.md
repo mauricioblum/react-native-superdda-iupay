@@ -2,7 +2,11 @@
 
 SuperDDA IuPay package and SDK for React Native
 
+[![NPM](https://nodei.co/npm/react-native-superdda-iupay.png?compact=true)](https://www.npmjs.com/package/react-native-superdda-iupay)
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/581ed11a-1e2e-4639-a200-b0038e3f3c8b/deploy-status)](https://app.netlify.com/sites/superdda-storybook/deploys)
+[![Actions Status](https://github.com/mauricioblum/react-native-superdda-iupay/workflows/CI/badge.svg)](https://github.com/mauricioblum/react-native-superdda-iupay/actions)
+
 
 ## Installation
 
