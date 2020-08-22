@@ -1,6 +1,6 @@
 {
   "name": "react-native-superdda-iupay",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "SuperDDA Iupay package and SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
