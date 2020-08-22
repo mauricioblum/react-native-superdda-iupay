@@ -1,6 +1,6 @@
 {
   "name": "react-native-superdda-iupay",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "SuperDDA Iupay package and SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -67,7 +67,10 @@
     "react": "*",
     "react-native": "*",
     "react-number-format": "^4.4.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "polished": "^3.6.5",
+    "react-native-chart-kit": "^6.6.0",
+    "react-native-svg": "^12.1.0"
   },
   "jest": {
     "preset": "react-native",
@@ -128,6 +131,9 @@
   },
   "dependencies": {
     "date-fns": "^2.15.0",
+    "polished": "^3.6.5",
+    "react-native-chart-kit": "^6.6.0",
+    "react-native-svg": "^12.1.0",
     "react-native-switch": "^2.0.0",
     "react-number-format": "^4.4.1",
     "styled-components": "^5.1.1"

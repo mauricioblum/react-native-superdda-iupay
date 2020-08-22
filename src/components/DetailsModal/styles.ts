@@ -53,13 +53,22 @@ export const ModalWebContainer = styled.View`
   top: 7%;
   left: 4%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.49);
+
+  ${(props: { mobile?: boolean }) =>
+    props.mobile &&
+    `
+    position: initial;
+    top: unset;
+    left: unset;
+    width: auto;
+  `};
 `;
 
 export const Title = styled.Text`
   font-family: 'NunitoSans-SemiBold';
   font-size: 15px;
   line-height: 24px;
-  color: #f78c49;
+  color: ${(props: { color?: string }) => props.color || '#f78c49'};
 `;
 
 export const ModalText = styled.Text`

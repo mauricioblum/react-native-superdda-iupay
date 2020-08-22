@@ -9,7 +9,7 @@ import {
   TotalPaymentTextValue,
 } from './styles';
 
-interface CardListProps {
+export interface CardListProps {
   cards: CardListItemProps[];
   featured?: boolean;
   featuredBackgroundColor?: string;
@@ -42,13 +42,7 @@ export const CardList: React.FC<CardListProps> = ({
   }, [cards, totalDueOnly]);
 
   return (
-    <Container
-      contentContainerStyle={{
-        flex: 1,
-        backgroundColor: bgColor,
-        padding: 15,
-      }}
-    >
+    <Container bgColor={bgColor}>
       {cards.map((card, index) => (
         <CardListItem
           key={index}

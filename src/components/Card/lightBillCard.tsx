@@ -19,7 +19,7 @@ import {
   ValueText,
 } from './styles';
 
-import type { CardProps } from '.';
+import { CardProps } from '.';
 import { formatDate } from '../utils/formatDate';
 
 const FlagText = styled.Text<{ color: string }>`
@@ -67,7 +67,7 @@ export const LightBillCard: React.FC<CardProps> = ({
         <CardHeader>
           {/* <Logo style={logoStyle} source={lightbulb} resizeMode="contain" /> */}
           <LightBulb size={38} />
-          <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
+          <DueDateText isDue={isDue ? 1 : 0}>{formattedDate}</DueDateText>
         </CardHeader>
         <CardBody>
           <BetweenRow>

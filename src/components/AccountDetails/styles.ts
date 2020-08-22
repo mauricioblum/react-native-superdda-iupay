@@ -1,15 +1,19 @@
 import styled from 'styled-components/native';
+import { transparentize } from 'polished';
+
+interface StyledProps {
+  baseColor: string;
+  hasDisabledStyle?: boolean;
+}
 
 export const WrapperView = styled.View`
-  flex: 1;
-  position: relative;
   width: 100%;
+  position: relative;
 `;
 
 export const Container = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
 })`
-  flex: 1;
   width: 100%;
   background-color: #fff;
 `;
@@ -42,7 +46,7 @@ export const Title = styled.Text`
   font-family: 'NunitoSans-Bold';
   font-size: 15px;
   line-height: 24px;
-  color: #f78c49;
+  color: ${(props: StyledProps) => props.baseColor};
 `;
 
 export const IconsWrapper = styled.View`
@@ -67,49 +71,8 @@ export const ValueTitle = styled.Text`
   color: #727272;
 `;
 
-export const ValueDescription = styled(ValueTitle)`
+export const ValueTitleBold = styled(ValueTitle)`
   font-family: 'NunitoSans-Bold';
-`;
-
-export const ValueActive = styled.Text.attrs({
-  textDecorationStyle: 'solid',
-  textDecorationColor: '#f78c49',
-})`
-  font-family: 'NunitoSans-Bold';
-  text-decoration: underline;
-  text-decoration-color: '#f78c49';
-  font-size: 15px;
-  color: #f78c49;
-`;
-
-export const CardHolderContainer = styled.View`
-  width: 100%;
-  background: #f78c49;
-  padding: 16px;
-  margin-bottom: 15px;
-`;
-
-export const CardHolderCard = styled.View`
-  width: 100%;
-  border-radius: 8px;
-  background-color: #fffefe;
-  padding: 8px 17px;
-`;
-
-export const CardHolderText = styled.Text`
-  font-family: 'NunitoSans-Bold';
-  font-size: 15px;
-  color: #727272;
-  line-height: 22px;
-`;
-
-export const CardHolderButton = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.6,
-})``;
-
-export const CardHolderButtonText = styled(CardHolderText)`
-  margin-top: 2px;
-  color: #f78c49;
 `;
 
 export const ViewAccountDetailsButton = styled.TouchableOpacity.attrs({
@@ -119,35 +82,27 @@ export const ViewAccountDetailsButton = styled.TouchableOpacity.attrs({
   height: 40px;
   padding: 10px;
   border-radius: 8px;
-  background-color: #727272;
+  background-color: #fff;
   align-items: center;
   justify-content: center;
+  border: ${(props: StyledProps) => `2px solid ${props.baseColor}`};
+
+  ${(props: StyledProps) =>
+    props.hasDisabledStyle &&
+    `
+    border: 0;
+    background-color: #e8e8e8;
+  `}
 `;
 
 export const ViewAccountDetailsButtonText = styled.Text`
   font-family: 'NunitoSans-Bold';
   font-size: 15px;
-  color: #ffffff;
+  color: ${(props: StyledProps) => props.baseColor};
 `;
 
-export const PaymentHistoryContainer = styled.View`
-  width: 100%;
-  background: #f7f5f4;
-  margin-top: 10px;
-  padding-top: 15px;
-  padding-bottom: 20px;
-`;
-
-export const PaymentHistoryTitle = styled.Text`
-  font-family: 'NunitoSans-Regular';
-  font-size: 15px;
-  color: #727272;
-  padding-left: 25px;
-`;
-
-export const PaymentHistoryData = styled.ScrollView`
-  margin-top: 15px;
-`;
+export const PdfButton = styled(ViewAccountDetailsButton)``;
+export const PdfButtonText = styled(ViewAccountDetailsButtonText)``;
 
 export const PaymentHistoryItem = styled.View`
   width: 100%;
@@ -159,23 +114,139 @@ export const PaymentHistoryItem = styled.View`
   justify-content: space-between;
 `;
 
-export const PaymentMonth = styled(PaymentHistoryTitle)`
-  text-transform: uppercase;
-  padding: 0;
-`;
-
-export const PaymentValueInfo = styled.View`
+export const Row = styled.View`
   flex-direction: row;
   align-items: center;
 `;
 
-export const PaymentCurrency = styled(PaymentHistoryTitle)`
-  font-size: 11px;
-  padding: 0;
+export const RowBetween = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-export const PaymentValue = styled(PaymentHistoryTitle)`
-  font-family: 'NunitoSans-Bold';
+export const BarCodeTitle = styled.Text`
+  font-family: 'NunitoSans-SemiBold';
   font-size: 15px;
-  padding: 0;
+  color: #727272;
+  line-height: 22px;
+`;
+
+export const CopyButton = styled.TouchableOpacity``;
+
+export const BarCodeValue = styled(BarCodeTitle)`
+  font-size: 13px;
+`;
+
+export const AccountTypeText = styled.Text`
+  font-family: 'NunitoSans-SemiBold';
+  font-size: 16px;
+  color: #727272;
+`;
+
+export const ButtonsWrapper = styled.View`
+  margin-top: ${(props: { withMargin: boolean | undefined }) =>
+    props.withMargin ? '59px' : '0px'};
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: ${(props: { withMargin: boolean | undefined }) =>
+    props.withMargin ? '26px' : '10px'};
+`;
+
+export const CustomButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.9,
+})`
+  display: flex;
+  flex: 1;
+  height: 40px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  margin-right: 13px;
+  border: ${(props: StyledProps) => `2px solid ${props.baseColor}`};
+`;
+
+export const CustomButtonRight = styled(CustomButton)`
+  margin-right: 0;
+`;
+
+export const CustomButtonText = styled(ViewAccountDetailsButtonText)`
+  font-size: 13px;
+`;
+
+export const PaymentHistoryLink = styled.TouchableOpacity`
+  margin-top: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const PaymentHistoryLinkText = styled.Text`
+  font-family: 'NunitoSans-SemiBold';
+  font-size: 13px;
+  line-height: 16px;
+  text-decoration: underline;
+  text-decoration-color: #727272;
+  color: #727272;
+`;
+
+export const ChartView = styled.View`
+  margin: 16px 0;
+`;
+
+export const ChartLegend = styled.View`
+  width: 100%;
+  height: 40px;
+  background: ${(props: StyledProps) => props.baseColor};
+  padding-left: 25px;
+  padding-top: 19px;
+`;
+
+export const ChartLegendText = styled.Text`
+  font-family: 'NunitoSans-Regular';
+  font-size: 14px;
+  color: #ffffff;
+`;
+
+export const ChartLegendBottom = styled.View`
+  height: 35px;
+  background-color: ${(props: StyledProps) =>
+    `${transparentize(0.7, props.baseColor)}`};
+  padding: 8px 26px;
+  padding-left: 16px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ChartLegendBottomText = styled.Text`
+  font-family: 'NunitoSans-Bold';
+  font-size: 14px;
+  color: ${(props: StyledProps) => props.baseColor};
+`;
+
+export const AutomaticPaymentText = styled.Text`
+  font-family: 'NunitoSans-SemiBold';
+  font-size: 14px;
+  color: #727272;
+`;
+
+export const PaymentButton = styled(CustomButtonRight)`
+  background: ${(props: StyledProps) => props.baseColor};
+`;
+
+export const PaymentButtonText = styled(CustomButtonText)`
+  font-family: 'NunitoSans-Bold';
+  color: #fff;
+  font-size: 16px;
+`;
+
+export const PaymentButtonView = styled.View`
+  margin-top: 12px;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
 `;

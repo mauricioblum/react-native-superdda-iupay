@@ -23,7 +23,7 @@ import {
   PaidText,
 } from './styles';
 
-import type { CardProps } from '.';
+import { CardProps } from '.';
 
 export const DefaultCard: React.FC<CardProps> = ({
   children,
@@ -69,7 +69,7 @@ export const DefaultCard: React.FC<CardProps> = ({
             )}
             <CardTitle>{cardTitle}</CardTitle>
           </CardTitleContainer>
-          <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
+          <DueDateText isDue={isDue ? 1 : 0}>{formattedDate}</DueDateText>
         </CardHeader>
         <CardBody>
           <BetweenRow>

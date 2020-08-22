@@ -19,7 +19,7 @@ import {
   PaidText,
 } from './styles';
 
-import type { CardProps } from '.';
+import { CardProps } from '.';
 import { formatDate } from '../utils/formatDate';
 
 const NetflixLogo = (): JSX.Element => {
@@ -62,7 +62,7 @@ export const NetflixCard: React.FC<CardProps> = ({
       <Content>
         <CardHeader>
           <NetflixLogo />
-          <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
+          <DueDateText isDue={isDue ? 1 : 0}>{formattedDate}</DueDateText>
         </CardHeader>
         <CardBody>
           <BetweenRow>

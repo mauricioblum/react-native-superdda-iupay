@@ -1,6 +1,7 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import { DefaultCard } from '../Card/defaultCard';
-import type { CardProps } from '../Card';
+import { CardProps } from '../Card';
 
 import { Container } from './styles';
 
@@ -8,12 +9,16 @@ export interface FeatureCardProps {
   featuredBgColor?: string;
 }
 
-export const FeaturedCard: React.FC<FeatureCardProps & CardProps> = (props) => {
-  const { featuredBgColor } = props;
+export type FeaturedCardType = FeatureCardProps & CardProps;
+
+export const FeaturedCard: React.FC<FeaturedCardType> = (props) => {
+  const { featuredBgColor, onClickCard } = props;
 
   return (
     <Container bgColor={featuredBgColor}>
-      <DefaultCard {...props} />
+      <TouchableOpacity activeOpacity={0.9} onPress={onClickCard}>
+        <DefaultCard {...props} />
+      </TouchableOpacity>
     </Container>
   );
 };

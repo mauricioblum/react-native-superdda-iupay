@@ -1,6 +1,6 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
-import { View, Modal, Alert } from 'react-native';
+import { View, Modal, Platform } from 'react-native';
 import { CloseCircle } from '../Icons';
 import {
   Container,
@@ -19,8 +19,9 @@ import {
 } from './styles';
 import { formatMonthDate, formatStringDate } from '../utils/formatDate';
 
-export interface AccountDetailsModalProps {
+export interface DetailsModalProps {
   title?: string;
+  titleColor?: string;
   companyName?: string;
   cnpj?: string;
   cardNumber?: string;
@@ -39,10 +40,12 @@ export interface AccountDetailsModalProps {
   interestInstallmentFine?: number;
   isOpen: boolean;
   onClickClose: () => void;
-  renderMobile: boolean;
 }
 
-const renderModal = (props: AccountDetailsModalProps): JSX.Element => {
+const renderModal = (
+  props: DetailsModalProps,
+  isMobile?: boolean,
+): JSX.Element => {
   const {
     isOpen,
     title,
@@ -63,10 +66,11 @@ const renderModal = (props: AccountDetailsModalProps): JSX.Element => {
     interestInstallmentRate,
     interestInstallmentRateCET,
     interestInstallmentFine,
+    titleColor,
   } = props;
 
   return isOpen ? (
-    <ModalWebContainer>
+    <ModalWebContainer mobile={isMobile}>
       <ModalHeader>
         <ModalRow>
           <ModalTitle>{title}</ModalTitle>
@@ -76,7 +80,7 @@ const renderModal = (props: AccountDetailsModalProps): JSX.Element => {
         </ModalRow>
       </ModalHeader>
       <ModalContent>
-        <Title>{companyName}</Title>
+        <Title color={titleColor}>{companyName}</Title>
         <ModalText>CNPJ {cnpj}</ModalText>
         <ModalText>Cartão {cardNumber}</ModalText>
 
@@ -178,31 +182,13 @@ const renderModal = (props: AccountDetailsModalProps): JSX.Element => {
   );
 };
 
-export const AccountDetailsModal: React.FC<AccountDetailsModalProps> = (
-  props,
-) => {
-  const { renderMobile, isOpen, title } = props;
+export const DetailsModal: React.FC<DetailsModalProps> = (props) => {
+  const { isOpen } = props;
 
-  return renderMobile ? (
+  return Platform.OS !== 'web' ? (
     <Container>
-      <Modal
-        animationType="slide"
-        visible={isOpen}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-        }}
-      >
-        <Container>
-          <ModalHeader>
-            <ModalTitle>{title}</ModalTitle>
-          </ModalHeader>
-          <ModalContent>
-            <ModalTitle>{title}</ModalTitle>
-            <ModalTitle>{title}</ModalTitle>
-            <ModalTitle>{title}</ModalTitle>
-            <ModalTitle>{title}</ModalTitle>
-          </ModalContent>
-        </Container>
+      <Modal animationType="slide" visible={isOpen}>
+        {renderModal(props, true)}
       </Modal>
     </Container>
   ) : (
