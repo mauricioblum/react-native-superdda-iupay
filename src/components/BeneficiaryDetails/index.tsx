@@ -74,6 +74,7 @@ export interface BeneficiaryDetailsInfoProps {
   autoPayment?: boolean;
   authorizedLimit?: boolean;
   cardHolderName?: string;
+  cardHolderAddress?: string;
   paymentHistory?: BeneficiaryPaymentHistoryItem[];
   isFromIuPay?: boolean;
   isUserAdded?: boolean;
@@ -222,13 +223,15 @@ export const BeneficiaryDetails: React.FC<BeneficiaryDetailsProps> = ({
       {data.billDetails && (
         <DetailsModal
           isOpen={modalOpen}
-          title="Detalhes da conta"
+          modalType="beneficiary"
+          title="Detalhes do Beneficiário"
           titleColor={baseColor}
           onClickClose={() => setModalOpen(false)}
           companyName={data.companyName}
           cnpj={data.cnpj}
           cardNumber={data.cardNumber}
           clientName={data.cardHolderName}
+          clientAddress={data.cardHolderAddress}
           dueDate={data.billDetails.dueDate}
           emissionDate={data.billDetails.emissionDate}
           month={data.billDetails.billDate}
