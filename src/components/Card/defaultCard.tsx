@@ -84,7 +84,7 @@ export const DefaultCard: React.FC<CardProps> = ({
             )}
           </CardTitleContainer>
           {isLocked ? (
-            <Shimmer size="30px" testID="shimmer" />
+            <Shimmer testID="shimmer" size="30px" />
           ) : (
             <DueDateText accessibilityLabel="dueDate" isDue={isDue ? 1 : 0}>
               {formattedDate}
@@ -95,9 +95,9 @@ export const DefaultCard: React.FC<CardProps> = ({
           {isLocked ? (
             <>
               <BetweenRow>
-                <Shimmer size="70px" testID="shimmer" />
+                <Shimmer testID="shimmer" size="70px" />
               </BetweenRow>
-              <Shimmer size="90px" testID="shimmer" />
+              <Shimmer testID="shimmer" size="90px" />
             </>
           ) : (
             <>
