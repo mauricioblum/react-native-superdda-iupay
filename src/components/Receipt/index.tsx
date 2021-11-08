@@ -38,8 +38,6 @@ export interface ReceiptProps {
   interest: number;
   /** Fine (tax) of the bill */
   fine: number;
-  /** Authentication code of the bill */
-  authenticationCode: string;
   /** Due Date */
   dueDate: Date;
   /** Base color of screen */
@@ -63,7 +61,6 @@ export const Receipt: React.FC<ReceiptProps> = ({
   discount,
   interest,
   fine,
-  authenticationCode,
   dueDate,
   baseColor,
   onClickBack,
@@ -187,11 +184,6 @@ export const Receipt: React.FC<ReceiptProps> = ({
             decimalScale={2}
             fixedDecimalScale
           />
-        </BlockView>
-
-        <BlockView>
-          <BlockLabel>Código de Autenticação:</BlockLabel>
-          <BlockValue>{authenticationCode}</BlockValue>
         </BlockView>
 
         <BlockView>
